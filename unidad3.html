@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Unidad 3 - Selección de componentes para ensamble</title>
+  <style>
+    :root {
+      --azul-oscuro: #0a192f;
+      --azul-medio: #172a45;
+      --azul-neon: #64ffda;
+      --azul-claro: #ccd6f6;
+      --gris-tech: #8892b0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: var(--azul-oscuro);
+      color: var(--azul-claro);
+      line-height: 1.6;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    .banner-superior {
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .banner-superior img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    header {
+      background-color: var(--azul-medio);
+      color: var(--azul-neon);
+      text-align: center;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border-bottom: 3px solid var(--azul-neon);
+    }
+
+    .tema {
+      margin-bottom: 2rem;
+      background: rgba(23, 42, 69, 0.3);
+      border-radius: 8px;
+      padding: 15px;
+    }
+
+    .tema-titulo {
+      font-size: 1.4rem;
+      color: var(--azul-neon);
+      margin-bottom: 1rem;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed var(--azul-neon);
+    }
+
+    .subtemas {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .subtema {
+      background: rgba(10, 25, 47, 0.7);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .subtema-titulo {
+      padding: 15px;
+      background: rgba(23, 42, 69, 0.8);
+      color: var(--azul-neon);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .subtema-titulo:hover {
+      background: rgba(100, 255, 218, 0.1);
+    }
+
+    .subtema-titulo::after {
+      content: "+";
+      font-size: 1.2rem;
+    }
+
+    .subtema-titulo.activo::after {
+      content: "-";
+    }
+
+    .contenido-subtema {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, padding 0.3s ease;
+    }
+
+    .contenido-subtema.abierto {
+      max-height: 1000px;
+      padding: 15px;
+      overflow-y: auto;
+    }
+
+    .contenido-subtema::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .contenido-subtema::-webkit-scrollbar-thumb {
+      background: var(--azul-neon);
+      border-radius: 3px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      border-top: 1px solid var(--azul-neon);
+    }
+  </style>
+<body class="unidad3">
+   <div class="banner-superior">
+    <img src="img/Img5Arqui.avif" alt="Banner Unidad 3 - Componentes de Computadora">
+  </div>
+
+  <header>
+    <h1>Unidad 3: Selección de componentes para ensamble de equipo de cómputo</h1>
+  </header>
+
+  <main>
+    <!-- Tema 3.1 -->
+    <div class="tema">
+      <div class="tema-titulo">3.1 Chipset</div>
+      <div class="subtemas">
+        <div class="subtema">
+          <div class="subtema-titulo">3.1.1 Unidad central de procesamiento (CPU)</div>
+          <div class="contenido-subtema">
+            <p>Factores clave para selección:</p>
+            <ul>
+              <li><strong>Socket:</strong> Compatibilidad con placa madre (LGA, PGA, BGA)</li>
+              <li><strong>Núcleos/Hilos:</strong> 4/8, 6/12, 8/16 para diferentes cargas de trabajo</li>
+              <li><strong>Frecuencia:</strong> GHz base/boost (3.5GHz/4.7GHz)</li>
+              <li><strong>TDP:</strong> Consumo térmico (35W, 65W, 105W+)</li>
+              <li><strong>Generación:</strong> Intel Core i9-13xxx, AMD Ryzen 5000/7000</li>
+              <li><strong>Gráficos integrados:</strong> Intel UHD, AMD Radeon Graphics</li>
+            </ul>
+          </div>
+        </div>
+        <div class="subtema">
+          <div class="subtema-titulo">3.1.2 Controlador de Bus</div>
+          <div class="contenido-subtema">
+            <p>Componente que gestiona la comunicación entre dispositivos:</p>
+            <ul>
+              <li><strong>Tipos de buses:</strong> FSB, DMI, HyperTransport, Infinity Fabric</li>
+              <li><strong>Ancho de banda:</strong> Determinado por frecuencia y bits (64-bit @ 100MHz)</li>
+              <li><strong>Arbitraje:</strong> Priorización de dispositivos</li>
+              <li><strong>Chipsets modernos:</strong> Intel Z790, AMD X670</li>
+            </ul>
+          </div>
+        </div>
+        <div class="subtema">
+          <div class="subtema-titulo">3.1.3 Puertos de entrada/salida</div>
+          <div class="contenido-subtema">
+            <p>Interfaces para conectar periféricos:</p>
+            <ul>
+              <li><strong>USB:</strong> 2.0 (480Mbps), 3.2 Gen 2x2 (20Gbps), USB4 (40Gbps)</li>
+              <li><strong>Thunderbolt:</strong> 3/4 (40Gbps), compatible USB4</li>
+              <li><strong>Video:</strong> HDMI 2.1, DisplayPort 2.0</li>
+              <li><strong>Audio:</strong> Jack 3.5mm, S/PDIF óptico</li>
+              <li><strong>Red:</strong> Ethernet 2.5G/10G, Wi-Fi 6E</li>
+            </ul>
+          </div>
+        </div>
+        <div class="subtema">
+          <div class="subtema-titulo">3.1.4 Controlador de acceso directo a memoria</div>
+          <div class="contenido-subtema">
+            <p>Gestión de transferencias sin CPU:</p>
+            <ul>
+              <li><strong>Modos DMA:</strong> Single, Block, Demand, Cascade</li>
+              <li><strong>Canales DMA:</strong> 8 canales en sistemas modernos</li>
+              <li><strong>Velocidades:</strong> Hasta 6.4GT/s (PCIe 4.0)</li>
+              <li><strong>Optimizaciones:</strong> Scatter-Gather, Chaining</li>
+            </ul>
+          </div>
+        </div>
+        <div class="subtema">
+          <div class="subtema-titulo">3.1.5 Controlador de interrupciones</div>
+          <div class="contenido-subtema">
+            <p>Manejo de señales asíncronas:</p>
+            <ul>
+              <li><strong>Controladores PIC/APIC:</strong> 8259A vs I/O APIC moderno</li>
+              <li><strong>Prioridades:</strong> Niveles IRQ 0-15 (IRQ0 timer, IRQ1 keyboard)</li>
+              <li><strong>MSI:</strong> Message Signaled Interrupts (PCIe)</li>
+              <li><strong>Niveles:</strong> Edge-triggered vs level-triggered</li>
+            </ul>
+          </div>
+        </div>
+        <div class="subtema">
+          <div class="subtema-titulo">3.1.6 Circuitos de temporización</div>
+          <div class="contenido-subtema">
+            <p>Sincronización de operaciones:</p>
+            <ul>
+              <li><strong>Reloj del sistema:</strong> Base de tiempo (14.318MHz crystal)</li>
+              <li><strong>PLL:</strong> Phase-Locked Loops para multiplicar frecuencia</li>
+              <li><strong>Timers:</strong> 8253/8254 Programmable Interval Timer</li>
+              <li><strong>RTC:</strong> Real-Time Clock con batería CMOS</li>
+            </ul>
+          </div>
+        </div>
+        <div class="subtema">
+          <div class="subtema-titulo">3.1.7 Circuitos de control</div>
+          <div class="contenido-subtema">
+            <p>Gestión de flujo de operaciones:</p>
+            <ul>
+              <li><strong>Reset circuits:</strong> Power-on reset, watchdog timer</li>
+              <li><strong>Voltage regulation:</strong> VRMs para CPU/GPU (fases 8+2, 10+2)</li>
+              <li><strong>Power management:</strong> ACPI estados (S0-S5)</li>
+              <li><strong>Fan control:</strong> PWM controlado por temperatura</li>
+            </ul>
+          </div>
+        </div>
+        <div class="subtema">
+          <div class="subtema-titulo">3.1.8 Controladores de video</div>
+          <div class="contenido-subtema">
+            <p>Gestión de salida gráfica:</p>
+            <ul>
+              <li><strong>GPU integrada:</strong> Intel UHD, AMD Radeon Graphics</li>
+              <li><strong>Salidas:</strong> Soporte para múltiples monitores</li>
+              <li><strong>Aceleración:</strong> Quick Sync Video, NVENC</li>
+              <li><strong>Resoluciones:</strong> Hasta 8K @ 60Hz (DP 2.0)</li>
+              <li><strong>API soportadas:</strong> DirectX 12, Vulkan, OpenGL</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tema 3.2 -->
+    <div class="tema">
+      <div class="tema-titulo">3.2 Aplicaciones</div>
+      <div class="subtemas">
+        <div class="subtema">
+          <div class="subtema-titulo">3.2.1 Entrada/Salida</div>
+          <div class="contenido-subtema">
+            <p>Selección de dispositivos periféricos:</p>
+            <ul>
+              <li><strong>Teclados:</strong> Mecánicos vs membrana, switches (Cherry MX)</li>
+              <li><strong>Ratones:</strong> Óptico vs láser, DPI ajustable (800-16000+)</li>
+              <li><strong>Monitores:</strong> TN vs IPS vs VA, Hz (60-360Hz), resolución (1080p-8K)</li>
+              <li><strong>Impresoras:</strong> Laser (PPM), inyección (DPI), multifuncionales</li>
+            </ul>
+          </div>
+        </div>
+        <div class="subtema">
+          <div class="subtema-titulo">3.2.2 Almacenamiento</div>
+          <div class="contenido-subtema">
+            <p>Opciones de almacenamiento modernas:</p>
+            <ul>
+              <li><strong>SSD NVMe:</strong> PCIe 3.0/4.0 (3500-7000MB/s), formatos M.2 2280</li>
+              <li><strong>SSD SATA:</strong> 2.5" (550MB/s), para almacenamiento secundario</li>
+              <li><strong>HDD:</strong> 3.5" (7200RPM, 256MB cache), para archivado</li>
+              <li><strong>NAS:</strong> Soluciones multi-bay para RAID (Synology, QNAP)</li>
+              <li><strong>Cloud:</strong> Backup automático (OneDrive, Google Drive)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tema 3.3 -->
+    <div class="tema">
+      <div class="tema-titulo">3.3 Ambientes de servicio</div>
+      <div class="subtemas">
+        <div class="subtema">
+          <div class="subtema-titulo">3.3.1 Negocios</div>
+          <div class="contenido-subtema">
+            <p>Requisitos para entornos corporativos:</p>
+            <ul>
+              <li><strong>Estaciones de trabajo:</strong> Dell OptiPlex, Lenovo ThinkCentre</li>
+              <li><strong>Portátiles empresariales:</strong> Durabilidad MIL-STD, TPM</li>
+              <li><strong>Servidores:</strong> Torre/rack (PowerEdge, ProLiant)</li>
+              <li><strong>Seguridad:</strong> BitLocker, vPro, SmartCard readers</li>
+              <li><strong>Gestión:</strong> Intel AMT, LANDesk</li>
+            </ul>
+          </div>
+        </div>
+        <div class="subtema">
+          <div class="subtema-titulo">3.3.2 Industria</div>
+          <div class="contenido-subtema">
+            <p>Equipos para entornos industriales:</p>
+            <ul>
+              <li><strong>Rugged PCs:</strong> Fanless, -20°C a 60°C operación</li>
+              <li><strong>Panel PCs:</strong> IP65, resistentes a químicos</li>
+              <li><strong>PLC:</strong> Controladores lógicos programables</li>
+              <li><strong>Adquisición de datos:</strong> Módulos DAQ PCI/PCIe</li>
+              <li><strong>Certificaciones:</strong> ATEX, IEC 61131-2</li>
+            </ul>
+          </div>
+        </div>
+        <div class="subtema">
+          <div class="subtema-titulo">3.3.3 Comercio Electrónico</div>
+          <div class="contenido-subtema">
+            <p>Infraestructura para e-commerce:</p>
+            <ul>
+              <li><strong>Servidores web:</strong> Escalabilidad vertical/horizontal</li>
+              <li><strong>Balanceo de carga:</strong> HAProxy, F5 BIG-IP</li>
+              <li><strong>Bases de datos:</strong> MySQL Cluster, MongoDB Atlas</li>
+              <li><strong>CDN:</strong> Cloudflare, Akamai para contenido estático</li>
+              <li><strong>Seguridad:</strong> WAF, DDoS protection</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 ITS - Arquitectura de Computadoras</p>
+  </footer>
+ <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const subtemaTitulos = document.querySelectorAll('.subtema-titulo');
+      
+      subtemaTitulos.forEach(titulo => {
+        titulo.addEventListener('click', function() {
+          // Cerrar otros subtemas
+          document.querySelectorAll('.subtema-titulo').forEach(t => {
+            if (t !== this) {
+              t.classList.remove('activo');
+              t.nextElementSibling.classList.remove('abierto');
+            }
+          });
+          
+          // Alternar estado del subtema clickeado
+          this.classList.toggle('activo');
+          const contenido = this.nextElementSibling;
+          contenido.classList.toggle('abierto');
+          
+          // Desplazamiento suave
+          if (contenido.classList.contains('abierto')) {
+            setTimeout(() => {
+              contenido.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }, 100);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

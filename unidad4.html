@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Unidad 4 - Computación Paralela</title>
+  <style>
+    :root {
+      --azul-oscuro: #0a192f;
+      --azul-medio: #172a45;
+      --azul-neon: #64ffda;
+      --azul-claro: #ccd6f6;
+      --gris-tech: #8892b0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: var(--azul-oscuro);
+      color: var(--azul-claro);
+      line-height: 1.6;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    .banner-superior {
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .banner-superior img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    header {
+      background-color: var(--azul-medio);
+      color: var(--azul-neon);
+      text-align: center;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border-bottom: 3px solid var(--azul-neon);
+    }
+
+    .tema {
+      margin-bottom: 2rem;
+      background: rgba(23, 42, 69, 0.3);
+      border-radius: 8px;
+      padding: 15px;
+    }
+
+    .tema-titulo {
+      font-size: 1.4rem;
+      color: var(--azul-neon);
+      margin-bottom: 1rem;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed var(--azul-neon);
+    }
+
+    .subtemas {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .subtema {
+      background: rgba(10, 25, 47, 0.7);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .subtema-titulo {
+      padding: 15px;
+      background: rgba(23, 42, 69, 0.8);
+      color: var(--azul-neon);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .subtema-titulo:hover {
+      background: rgba(100, 255, 218, 0.1);
+    }
+
+    .subtema-titulo::after {
+      content: "+";
+      font-size: 1.2rem;
+    }
+
+    .subtema-titulo.activo::after {
+      content: "-";
+    }
+
+    .contenido-subtema {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, padding 0.3s ease;
+    }
+
+    .contenido-subtema.abierto {
+      max-height: 1000px;
+      padding: 15px;
+      overflow-y: auto;
+    }
+
+    .contenido-subtema::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .contenido-subtema::-webkit-scrollbar-thumb {
+      background: var(--azul-neon);
+      border-radius: 3px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      border-top: 1px solid var(--azul-neon);
+    }
+  </style>
+<body class="unidad4">
+  <div class="banner-superior">
+    <img src="img/Img6Arqui.jpg" alt="Banner Unidad 4 - Computación Paralela" class="imagen-banner">
+  </div>
+  <header>
+    <h1>Unidad 4: Aspectos Básicos de la Computación Paralela</h1>
+  </header>
+
+  <main>
+    <!-- Tema 4.1 -->
+    <div class="tema">
+      <div class="tema-titulo">4.1 Tipos de Computación Paralela</div>
+      <div class="subtemas">
+        <div class="subtema">
+          <div class="subtema-titulo">4.1.1 Clasificación</div>
+          <div class="contenido-subtema">
+            <p><strong>Taxonomía de Flynn:</strong></p>
+            <ul>
+              <li><strong>SISD</strong> (Single Instruction, Single Data): Computación secuencial tradicional</li>
+              <li><strong>SIMD</strong> (Single Instruction, Multiple Data): Procesamiento vectorial (GPU, AVX)</li>
+              <li><strong>MISD</strong> (Multiple Instruction, Single Data): Raramente usado (sistemas tolerantes a fallos)</li>
+              <li><strong>MIMD</strong> (Multiple Instruction, Multiple Data): Multiprocesadores/multinúcleo</li>
+            </ul>
+            <p><strong>Por granularidad:</strong></p>
+            <ul>
+              <li>Bit-level parallelism</li>
+              <li>Instruction-level parallelism (ILP)</li>
+              <li>Task parallelism</li>
+              <li>Data parallelism</li>
+            </ul>
+          </div>
+        </div>
+        <div class="subtema">
+          <div class="subtema-titulo">4.1.2 Arquitectura de Computadoras Secuenciales</div>
+          <div class="contenido-subtema">
+            <p>Limitaciones del modelo von Neumann:</p>
+            <ul>
+              <li>Cuello de botella en el bus de datos/instrucciones</li>
+              <li>Dependencia de instrucciones secuenciales</li>
+              <li>Problema de la pared de memoria (memory wall)</li>
+              <li>Ley de Amdahl (limitación de la paralelización)</li>
+            </ul>
+            <p>Ejemplo: CPI (Ciclos por Instrucción) en procesadores scalar vs superscalar</p>
+          </div>
+        </div>
+        <div class="subtema">
+          <div class="subtema-titulo">4.1.3 Organización de Direcciones de Memoria</div>
+          <div class="contenido-subtema">
+            <p>Estrategias de acceso paralelo:</p>
+            <ul>
+              <li><strong>Interleaving</strong> (entrelazado) de memoria</li>
+              <li>Bancos de memoria independientes</li>
+              <li>Memoria cache NUMA (Non-Uniform Memory Access)</li>
+              <li>Coherencia de cache: Protocolos MESI, MOESI</li>
+            </ul>
+            <p>Ejemplo: Organización en GPUs modernas (HBM - High Bandwidth Memory)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tema 4.2 -->
+    <div class="tema">
+      <div class="tema-titulo">4.2 Sistemas de Memoria Compartida</div>
+      <div class="subtemas">
+        <div class="subtema">
+          <div class="subtema-titulo">4.2.1.1 Redes de Medio Compartido</div>
+          <div class="contenido-subtema">
+            <p>Características principales:</p>
+            <ul>
+              <li>Bus común como punto de contención</li>
+              <li>Protocolos de arbitraje (round-robin, prioridades)</li>
+              <li>Ventajas: Simplicidad, bajo costo</li>
+              <li>Desventajas: Escalabilidad limitada</li>
+            </ul>
+            <p>Ejemplos:</p>
+            <ul>
+              <li>Front-side bus en arquitecturas Intel antiguas</li>
+              <li>Bus PCI en sistemas embebidos</li>
+            </ul>
+          </div>
+        </div>
+        <div class="subtema">
+          <div class="subtema-titulo">4.2.1.2 Redes Conmutadas</div>
+          <div class="contenido-subtema">
+            <p>Topologías avanzadas:</p>
+            <ul>
+              <li><strong>Crossbar switch</strong>: Conexión punto a punto sin bloqueo</li>
+              <li><strong>Multistage networks</strong>: Omega, Butterfly, Clos</li>
+              <li><strong>On-chip networks</strong>: NOCs (Network-on-Chip)</li>
+            </ul>
+            <p>Ejemplos modernos:</p>
+            <ul>
+              <li>Infinity Fabric en AMD</li>
+              <li>Mesh Interconnect en Intel</li>
+              <li>NVLink en NVIDIA</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tema 4.3 -->
+    <div class="tema">
+      <div class="tema-titulo">4.3 Sistemas de Memoria Distribuida: Multiprocesadores</div>
+      <div class="subtemas">
+        <div class="subtema">
+          <div class="subtema-titulo">4.3.1 Redes de Interconexión Estáticas</div>
+          <div class="contenido-subtema">
+            <p>Topologías físicas:</p>
+            <ul>
+              <li><strong>Malla 2D/3D</strong>: Usada en supercomputadoras</li>
+              <li><strong>Torus</strong>: Malla con conexiones circulares</li>
+              <li><strong>Hipercubo</strong>: Log(n) diámetro</li>
+              <li><strong>Árbol</strong>: Jerárquico, bajo costo</li>
+              <li><strong>Estrella</strong>: Simple pero con punto único de fallo</li>
+            </ul>
+            <p>Métricas de rendimiento:</p>
+            <ul>
+              <li>Latencia: O(1) a O(log n)</li>
+              <li>Ancho de banda: Bisection bandwidth</li>
+              <li>Escalabilidad: Número máximo de nodos</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tema 4.4 -->
+     <div class="tema">
+      <div class="tema-titulo">4.4 Casos de Estudio</div>
+      <div class="subtemas">
+        <div class="subtema">
+          <div class="subtema-titulo">4.4.1 Ejemplos Reales</div>
+          <div class="contenido-subtema">
+            <div class="caso-estudio">
+              <h4>Supercomputadoras TOP500</h4>
+              <ul>
+                <li><strong>Fugaku</strong> (Japón):
+                  <ul>
+                    <li>Arquitectura ARM con procesadores A64FX</li>
+                    <li>Interconexión Tofu D</li>
+                    <li>7.3 millones de núcleos</li>
+                    <li>Rendimiento: 442 petaflops (Linpack)</li>
+                    <li>Aplicaciones: investigación COVID-19, simulaciones climáticas</li>
+                  </ul>
+                </li>
+                <li><strong>Summit</strong> (EE.UU.):
+                  <ul>
+                    <li>Procesadores IBM Power9 + GPUs NVIDIA Volta</li>
+                    <li>Interconexión NVLink</li>
+                    <li>200 petaflops</li>
+                    <li>Usado en investigación de energía y materiales</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+
+            <div class="caso-estudio">
+              <h4>Procesadores Multinúcleo Comerciales</h4>
+              <ul>
+                <li><strong>AMD EPYC 7763</strong>:
+                  <ul>
+                    <li>64 núcleos / 128 hilos</li>
+                    <li>Arquitectura Zen 3</li>
+                    <li>Tecnología Infinity Fabric para comunicación entre chiplets</li>
+                    <li>Uso: servidores y centros de datos</li>
+                  </ul>
+                </li>
+                <li><strong>Apple M1 Ultra</strong>:
+                  <ul>
+                    <li>20 núcleos (16 performance + 4 efficiency)</li>
+                    <li>Arquitectura ARM unificada</li>
+                    <li>Memoria unificada de 128GB</li>
+                    <li>Interconexión UltraFusion para combinar dos chips M1 Max</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+
+            <div class="caso-estudio">
+              <h4>Clusters Beowulf</h4>
+              <ul>
+                <li><strong>Concepto</strong>:
+                  <ul>
+                    <li>Agrupación de computadoras commodity</li>
+                    <li>Sistema operativo Linux</li>
+                    <li>Comunicación mediante MPI (Message Passing Interface)</li>
+                  </ul>
+                </li>
+                <li><strong>Ejemplo: Stone Soupercomputer (ORNL)</strong>:
+                  <ul>
+                    <li>Construido con PCs reciclados</li>
+                    <li>133 nodos Pentium Pro</li>
+                    <li>Demostró la viabilidad de clusters de bajo costo</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+
+            <div class="caso-estudio">
+              <h4>Computación Heterogénea</h4>
+              <ul>
+                <li><strong>NVIDIA DGX A100</strong>:
+                  <ul>
+                    <li>8 GPUs NVIDIA A100</li>
+                    <li>Interconexión NVLink (600GB/s ancho de banda)</li>
+                    <li>5 petaflops de rendimiento AI</li>
+                    <li>Uso: entrenamiento de modelos de deep learning</li>
+                  </ul>
+                </li>
+                <li><strong>Google TPU v4</strong>:
+                  <ul>
+                    <li>Unidades de Procesamiento Tensorial</li>
+                    <li>Optimizadas para operaciones matriciales</li>
+                    <li>Usadas en Google Search, Translate y otros servicios</li>
+                    <li>Hasta 1.1 exaflops en pods TPU</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+
+            <div class="caso-estudio">
+              <h4>Aplicaciones Específicas</h4>
+              <ul>
+                <li><strong>Simulación climática</strong>:
+                  <ul>
+                    <li>Modelos que dividen la atmósfera en cuadrículas</li>
+                    <li>Procesamiento paralelo de diferentes regiones</li>
+                    <li>Ejemplo: Modelo del Centro Europeo (ECMWF)</li>
+                  </ul>
+                </li>
+                <li><strong>Renderizado de películas</strong>:
+                  <ul>
+                    <li>Granjas de render con miles de núcleos</li>
+                    <li>División por frames o regiones de imagen</li>
+                    <li>Ejemplo: Pixar's RenderMan</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 ITS - Arquitectura de Computadoras</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const subtemaTitulos = document.querySelectorAll('.subtema-titulo');
+      
+      subtemaTitulos.forEach(titulo => {
+        titulo.addEventListener('click', function() {
+          // Cerrar otros subtemas
+          document.querySelectorAll('.subtema-titulo').forEach(t => {
+            if (t !== this) {
+              t.classList.remove('activo');
+              t.nextElementSibling.classList.remove('abierto');
+            }
+          });
+          
+          // Alternar estado del subtema clickeado
+          this.classList.toggle('activo');
+          const contenido = this.nextElementSibling;
+          contenido.classList.toggle('abierto');
+          
+          // Desplazamiento suave
+          if (contenido.classList.contains('abierto')) {
+            setTimeout(() => {
+              contenido.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }, 100);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

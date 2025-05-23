@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Unidad 1 - Arquitectura de Computadoras</title>
+  <style>
+    :root {
+      --azul-oscuro: #0a192f;
+      --azul-medio: #172a45;
+      --azul-neon: #64ffda;
+      --azul-claro: #ccd6f6;
+      --gris-tech: #8892b0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: var(--azul-oscuro);
+      color: var(--azul-claro);
+      line-height: 1.6;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    .banner-superior {
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .banner-superior img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    header {
+      background-color: var(--azul-medio);
+      color: var(--azul-neon);
+      text-align: center;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border-bottom: 3px solid var(--azul-neon);
+    }
+
+    .tema {
+      margin-bottom: 2rem;
+      background: rgba(23, 42, 69, 0.3);
+      border-radius: 8px;
+      padding: 15px;
+    }
+
+    .tema-titulo {
+      font-size: 1.4rem;
+      color: var(--azul-neon);
+      margin-bottom: 1rem;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed var(--azul-neon);
+    }
+
+    .subtemas {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .subtema {
+      background: rgba(10, 25, 47, 0.7);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .subtema-titulo {
+      padding: 15px;
+      background: rgba(23, 42, 69, 0.8);
+      color: var(--azul-neon);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .subtema-titulo:hover {
+      background: rgba(100, 255, 218, 0.1);
+    }
+
+    .subtema-titulo::after {
+      content: "+";
+      font-size: 1.2rem;
+    }
+
+    .subtema-titulo.activo::after {
+      content: "-";
+    }
+
+    .contenido-subtema {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, padding 0.3s ease;
+    }
+
+    .contenido-subtema.abierto {
+      max-height: 1000px;
+      padding: 15px;
+      overflow-y: auto;
+    }
+
+    .contenido-subtema::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .contenido-subtema::-webkit-scrollbar-thumb {
+      background: var(--azul-neon);
+      border-radius: 3px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      border-top: 1px solid var(--azul-neon);
+    }
+  </style>
+
+</head>
+<body class="unidad1">
+  <div class="banner-superior">
+    <img src="img/Img3Arqui.jpg" alt="Banner Unidad 1 - Modelos de Arquitectura">
+  </div>
+  <header>
+    <h1>Unidad 1: Arquitectura de Computadoras</h1>
+  </header>
+
+  <main>
+    <!-- Tema 1.1 -->
+    <div class="tema">
+      <div class="tema-titulo">1.1 Modelos de Arquitecturas de Cómputo</div>
+      <div class="subtemas">
+        <div class="subtema">
+          <div class="subtema-titulo">1.1.1 Clásicas</div>
+          <div class="contenido-subtema">
+            <h4>Arquitectura Von Neumann</h4>
+            <p>Modelo que integra CPU, memoria y dispositivos de E/S en un sistema centralizado con un flujo secuencial de instrucciones.</p>
+            <h4>Arquitectura Harvard</h4>
+            <p>Modelo con memorias separadas para datos e instrucciones, permitiendo acceso simultáneo.</p>
+            
+            <h3>Los modelos clásicos de arquitectura de cómputo</h3>
+            <p>Son las estructuras básicas que dieron origen a las computadoras modernas. Se centran en cómo se conectan y comunican los componentes principales como el procesador, la memoria y los dispositivos de entrada/salida.</p>
+            
+            <h4>Arquitectura de Von Neumann:</h4>
+            <ol>
+              <li>Usa una sola memoria para datos e instrucciones.</li>
+              <li>Ejecuta las instrucciones secuencialmente.</li>
+              <li>Es el modelo más común en computadoras personales.</li>
+              <li>Su principal limitación es el cuello de botella de Von Neumann, debido a que solo puede acceder a datos o instrucciones en un solo ciclo.</li>
+            </ol>
+            
+            <h4>Arquitectura Harvard:</h4>
+            <ol>
+              <li>Separa la memoria de datos y de instrucciones.</li>
+              <li>Permite mayor velocidad al poder acceder a ambas simultáneamente.</li>
+              <li>Común en sistemas embebidos y microcontroladores.</li>
+            </ol>
+          </div>
+        </div>
+        <div class="subtema">
+          <div class="subtema-titulo">1.1.2 Segmentadas</div>
+          <div class="contenido-subtema">
+            <p>Sistemas que dividen el procesamiento en etapas paralelizables (pipelines) para aumentar el rendimiento.</p>
+            <ul>
+              <li>Pipeline de instrucciones</li>
+              <li>Pipeline aritmético</li>
+              <li>Pipeline gráfico</li>
+            </ul>
+            
+            <h3>Arquitecturas Segmentadas</h3>
+            <p>También conocidos como arquitecturas segmentadas o pipeline, estos modelos mejoran el rendimiento al dividir la ejecución de instrucciones en etapas que se pueden realizar en paralelo.</p>
+            
+            <p>Funcionan como una línea de ensamblaje: mientras una instrucción se está decodificando, otra puede estarse ejecutando.</p>
+            
+            <p>Las etapas comunes del pipeline incluyen:</p>
+            <ul>
+              <li>Fetch (búsqueda)</li>
+              <li>Decode (decodificación)</li>
+              <li>Execute (ejecución)</li>
+              <li>Memory access</li>
+              <li>Write-back</li>
+            </ul>
+            
+            <p>Aumentan la velocidad sin necesidad de duplicar recursos, aunque pueden presentar problemas de interrupciones o dependencias entre instrucciones.</p>
+          </div>
+        </div>
+        <div class="subtema">
+          <div class="subtema-titulo">1.1.3 De multiprocesamiento</div>
+          <div class="contenido-subtema">
+            <p>Arquitecturas con múltiples procesadores que trabajan cooperativamente:</p>
+            <ul>
+              <li>SMP (Symmetric Multi-Processing)</li>
+              <li>NUMA (Non-Uniform Memory Access)</li>
+              <li>Cluster computing</li>
+            </ul>
+            
+            <h3>Modelos de Multiprocesamiento</h3>
+            <p>Estos modelos utilizan más de un procesador para ejecutar múltiples tareas al mismo tiempo, mejorando significativamente el rendimiento.</p>
+            
+            <h4>SMP (Symmetric Multiprocessing):</h4>
+            <p>Todos los procesadores comparten la misma memoria y tienen acceso equitativo a los recursos.</p>
+            
+            <h4>MPP (Massively Parallel Processing):</h4>
+            <p>Cada procesador tiene su propia memoria y se comunican mediante una red.</p>
+            
+            <p>Son ideales para tareas que requieren alto rendimiento como:</p>
+            <ul>
+              <li>Simulaciones</li>
+              <li>Bases de datos grandes</li>
+              <li>Aplicaciones científicas</li>
+            </ul>
+            
+            <p>Aprovechan el paralelismo a nivel de proceso o hilo para ejecutar múltiples instrucciones simultáneamente.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tema 1.2 -->
+    <div class="tema">
+      <div class="tema-titulo">1.2 Análisis de Componentes</div>
+      <div class="subtemas">
+        <!-- Subtema 1.2.1 -->
+        <div class="subtema">
+          <div class="subtema-titulo">1.2.1 Arquitecturas</div>
+          <div class="sub-subtemas">
+            <div class="subtema">
+              <div class="subtema-titulo">1.2.1.1 Unidad Central de Procesamiento</div>
+              <div class="contenido-subtema">
+                <p>Componente principal que ejecuta instrucciones:</p>
+                <ul>
+                  <li>Unidad de control</li>
+                  <li>Unidad aritmético-lógica</li>
+                  <li>Registros</li>
+                  <li>Buses internos</li>
+                </ul>
+              </div>
+            </div>
+            <div class="subtema">
+              <div class="subtema-titulo">1.2.1.2 Unidad Aritmética Lógica</div>
+              <div class="contenido-subtema">
+                <p>Realiza operaciones matemáticas y lógicas:</p>
+                <ul>
+                  <li>Operaciones aritméticas (suma, resta, etc.)</li>
+                  <li>Operaciones lógicas (AND, OR, NOT)</li>
+                  <li>Operaciones de comparación</li>
+                </ul>
+              </div>
+            </div>
+            <div class="subtema">
+              <div class="subtema-titulo">1.2.1.3 Registros</div>
+              <div class="contenido-subtema">
+                <p>Pequeñas memorias de alta velocidad dentro de la CPU:</p>
+                <ul>
+                  <li>Registros de propósito general</li>
+                  <li>Registros de segmento</li>
+                  <li>Registros de banderas</li>
+                  <li>Registro contador de programa</li>
+                </ul>
+              </div>
+            </div>
+            <div class="subtema">
+              <div class="subtema-titulo">1.2.1.4 Buses</div>
+              <div class="contenido-subtema">
+                <p>Sistemas de comunicación interna:</p>
+                <ul>
+                  <li>Bus de datos</li>
+                  <li>Bus de direcciones</li>
+                  <li>Bus de control</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Subtema 1.2.2 -->
+        <div class="subtema">
+          <div class="subtema-titulo">1.2.2 Memoria</div>
+          <div class="sub-subtemas">
+            <div class="subtema">
+              <div class="subtema-titulo">1.2.2.1 Conceptos Básicos del manejo de memoria</div>
+              <div class="contenido-subtema">
+                <p>Principios fundamentales:</p>
+                <ul>
+                  <li>Direccionamiento</li>
+                  <li>Localidad espacial y temporal</li>
+                  <li>Jerarquía de memoria</li>
+                </ul>
+                
+                <h3>Memoria</h3>
+                <p>Es un componente esencial para el almacenamiento y acceso a datos e instrucciones.</p>
+                
+                <h4>Memoria principal (RAM):</h4>
+                <p>De acceso rápido y volátil; almacena temporalmente datos e instrucciones en uso.</p>
+                
+                <h4>Memoria caché:</h4>
+                <p>Pequeña y rápida; acelera el acceso a datos frecuentes.</p>
+                
+                <h4>Memoria ROM:</h4>
+                <p>No volátil; contiene instrucciones básicas como el arranque del sistema.</p>
+              </div>
+            </div>
+            <div class="subtema">
+              <div class="subtema-titulo">1.2.2.2 Memoria Principal</div>
+              <div class="contenido-subtema">
+                <p>Almacenamiento temporal de datos y programas:</p>
+                <ul>
+                  <li>RAM (SRAM, DRAM)</li>
+                  <li>ROM (PROM, EPROM, EEPROM)</li>
+                  <li>Tecnologías emergentes</li>
+                </ul>
+              </div>
+            </div>
+            <div class="subtema">
+              <div class="subtema-titulo">1.2.2.3 Memoria Cache</div>
+              <div class="contenido-subtema">
+                <p>Memoria pequeña y rápida cerca del procesador:</p>
+                <ul>
+                  <li>Niveles L1, L2, L3</li>
+                  <li>Políticas de reemplazo</li>
+                  <li>Coherencia de cache</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Subtema 1.2.3 -->
+        <div class="subtema">
+          <div class="subtema-titulo">1.2.3 Manejo de entrada/salida</div>
+          <div class="sub-subtemas">
+            <div class="subtema">
+              <div class="subtema-titulo">1.2.3.1 Módulos de entrada/salida</div>
+              <div class="contenido-subtema">
+                <p>Interfaces entre periféricos y el sistema:</p>
+                <ul>
+                  <li>Controladores de dispositivo</li>
+                  <li>Interfaces estándar (USB, SATA, PCIe)</li>
+                </ul>
+              </div>
+            </div>
+            <div class="subtema">
+              <div class="subtema-titulo">1.2.3.2 Entrada/salida programada</div>
+              <div class="contenido-subtema">
+                <p>Método donde la CPU controla directamente la transferencia:</p>
+                <ul>
+                  <li>Ventajas y desventajas</li>
+                  <li>Ciclos de espera</li>
+                </ul>
+              </div>
+            </div>
+            <div class="subtema">
+              <div class="subtema-titulo">1.2.3.3 Entrada/salida mediante interrupciones</div>
+              <div class="contenido-subtema">
+                <p>Mecanismo asíncrono para manejar E/S:</p>
+                <ul>
+                  <li>Vectores de interrupción</li>
+                  <li>Prioridades de interrupción</li>
+                  <li>Manejo de IRQs</li>
+                </ul>
+                
+                <h3>Manejo de Entrada/Salida (E/S)</h3>
+                <p>Permite la comunicación entre la computadora y el entorno externo (usuario o dispositivos).</p>
+                
+                <p>Puede ser:</p>
+                <ul>
+                  <li>Programado</li>
+                  <li>Por interrupciones</li>
+                  <li>Mediante acceso directo a memoria (DMA)</li>
+                </ul>
+                
+                <p>Involucra dispositivos como:</p>
+                <ul>
+                  <li>Teclado</li>
+                  <li>Mouse</li>
+                  <li>Disco duro</li>
+                  <li>Impresora</li>
+                  <li>Etc.</li>
+                </ul>
+                
+                <p>La eficiencia del sistema depende en parte de cómo se gestionan estas operaciones.</p>
+              </div>
+            </div>
+            <div class="subtema">
+              <div class="subtema-titulo">1.2.3.4 Acceso directo a memoria</div>
+              <div class="contenido-subtema">
+                <p>Transferencia directa memoria-periférico sin CPU:</p>
+                <ul>
+                  <li>Controlador DMA</li>
+                  <li>Ciclos de robo de bus</li>
+                  <li>Modos de transferencia</li>
+                </ul>
+              </div>
+            </div>
+            <div class="subtema">
+              <div class="subtema-titulo">1.2.3.5 Canales y procesadores de entrada/salida</div>
+              <div class="contenido-subtema">
+                <p>Sistemas avanzados de E/S:</p>
+                <ul>
+                  <li>Procesadores dedicados</li>
+                  <li>Arquitecturas IOP</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Subtema 1.2.4 -->
+        <div class="subtema">
+          <div class="subtema-titulo">1.2.4 Buses</div>
+          <div class="sub-subtemas">
+            <div class="subtema">
+              <div class="subtema-titulo">1.2.4.1 Tipos de buses</div>
+              <div class="contenido-subtema">
+                <p>Clasificación de buses:</p>
+                <ul>
+                  <li>Bus del sistema</li>
+                  <li>Bus de expansión</li>
+                  <li>Bus local</li>
+                  <li>Bus de backplane</li>
+                </ul>
+                
+                <h3>Buses</h3>
+                <p>Son canales que transportan datos, direcciones e instrucciones entre los componentes del sistema.</p>
+                
+                <h4>Bus de datos:</h4>
+                <p>Transfiere la información procesada.</p>
+                
+                <h4>Bus de direcciones:</h4>
+                <p>Indica la ubicación de la memoria o dispositivo al que se accede.</p>
+                
+                <h4>Bus de control:</h4>
+                <p>Coordina las operaciones del sistema.</p>
+                
+                <p>Su ancho (número de líneas) afecta la cantidad de datos que pueden transmitirse simultáneamente.</p>
+              </div>
+            </div>
+            <div class="subtema">
+              <div class="subtema-titulo">1.2.4.2 Estructura de los buses</div>
+              <div class="contenido-subtema">
+                <p>Componentes y organización:</p>
+                <ul>
+                  <li>Líneas de datos</li>
+                  <li>Líneas de direcciones</li>
+                  <li>Líneas de control</li>
+                  <li>Protocolos de arbitraje</li>
+                </ul>
+              </div>
+            </div>
+            <div class="subtema">
+              <div class="subtema-titulo">1.2.4.3 Jerarquía de los buses</div>
+              <div class="contenido-subtema">
+                <p>Organización en niveles:</p>
+                <ul>
+                  <li>Bus del procesador</li>
+                  <li>Bus de memoria</li>
+                  <li>Bus de E/S</li>
+                  <li>Buses de expansión</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Subtema 1.2.5 -->
+        <div class="subtema">
+          <div class="subtema-titulo">1.2.5 Interrupciones</div>
+          <div class="contenido-subtema">
+            <p>Mecanismo para alterar la secuencia normal de ejecución:</p>
+            <ul>
+              <li>Interrupciones hardware vs software</li>
+              <li>Máscaras de interrupción</li>
+              <li>Niveles de prioridad</li>
+              <li>Manejo de excepciones</li>
+            </ul>
+            
+            <h3>Interrupciones</h3>
+            <p>Son señales que alteran temporalmente el flujo de ejecución del CPU para atender eventos urgentes.</p>
+            
+            <p>Pueden ser:</p>
+            <ul>
+              <li>Hardware (como una tecla presionada)</li>
+              <li>Software (errores o solicitudes del sistema)</li>
+            </ul>
+            
+            <p>El procesador:</p>
+            <ol>
+              <li>Detiene la tarea actual</li>
+              <li>Atiende la interrupción</li>
+              <li>Luego la reanuda</li>
+            </ol>
+            
+            <p>Permiten una respuesta rápida y eficiente a eventos externos sin afectar el rendimiento general del sistema.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 ITS - Arquitectura de Computadoras</p>
+  </footer>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const subtemaTitulos = document.querySelectorAll('.subtema-titulo');
+      
+      subtemaTitulos.forEach(titulo => {
+        titulo.addEventListener('click', function() {
+          // Cerrar otros subtemas
+          document.querySelectorAll('.subtema-titulo').forEach(t => {
+            if (t !== this) {
+              t.classList.remove('activo');
+              t.nextElementSibling.classList.remove('abierto');
+            }
+          });
+          
+          // Alternar estado del subtema clickeado
+          this.classList.toggle('activo');
+          const contenido = this.nextElementSibling;
+          contenido.classList.toggle('abierto');
+          
+          // Desplazamiento suave
+          if (contenido.classList.contains('abierto')) {
+            setTimeout(() => {
+              contenido.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }, 100);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

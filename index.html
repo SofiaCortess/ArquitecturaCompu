@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Arquitectura de Computadoras</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* ESTILOS INTEGRADOS PARA HEADER Y FOOTER */
+    header {
+      background-color: #172a45;
+      color: #64ffda;
+      text-align: center;
+      padding: 2rem 0;
+      border-bottom: 4px solid #64ffda;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      margin: -20px -20px 2rem -20px;
+    }
+    
+    header h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.5rem;
+      letter-spacing: 1px;
+      text-shadow: 0 0 10px rgba(100, 255, 218, 0.3);
+      margin: 0;
+    }
+    
+    footer {
+      background-color: #172a45;
+      color: #ccd6f6;
+      text-align: center;
+      padding: 1.5rem 0;
+      border-top: 4px solid #64ffda;
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
+      margin: 2rem -20px -20px -20px;
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 1px;
+      font-size: 0.9rem;
+    }
+    
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      font-family: 'Rajdhani', sans-serif;
+      background-color: #0a192f;
+      color: #ccd6f6;
+      line-height: 1.6;
+      padding: 20px;
+    }
+    
+    main {
+      flex: 1;
+    }
+    
+    @media (max-width: 768px) {
+      header {
+        padding: 1.5rem 0;
+        margin: -10px -10px 1.5rem -10px;
+      }
+      
+      header h1 {
+        font-size: 2rem;
+      }
+      
+      footer {
+        margin: 1.5rem -10px -10px -10px;
+        padding: 1rem 0;
+      }
+    }
+  </style>
+</head>
+<body class="unidad1">
+  <div class="banner-superior">
+    <img src="img/Img2Arqui.jpg" alt="Banner Unidad 1 - Modelos de Arquitectura">
+  </div>
+  <header>
+    <h1>Unidad 1: Arquitectura de Computadoras</h1>
+  </header>
+
+  <main class="contenedor-horizontal">
+    <!-- Fila 1: Descripción + Datos -->
+    <div class="fila">
+      <!-- Recuadro Descripción -->
+      <section class="recuadro-horizontal">
+        <h2>📋 Descripción</h2>
+        <div class="contenido">
+          <p>Estudio del diseño y estructura interna de sistemas de cómputo:</p>
+          <ul class="lista-iconos">
+            <li>💾 Componentes hardware</li>
+            <li>🧠 CPU y memoria</li>
+            <li>🔌 Buses y E/S</li>
+            <li>⚡ Computación paralela</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Recuadro Datos -->
+      <section class="recuadro-horizontal">
+        <h2>👩‍🎓 Datos Académicos</h2>
+        <div class="contenido">
+          <div class="dato">
+            <span class="etiqueta">Alumno:</span>
+            <span class="valor">Sofía Cortés</span>
+          </div>
+          <div class="dato">
+            <span class="etiqueta">Carrera:</span>
+            <span class="valor">Ing. Sistemas Computacionales</span>
+          </div>
+          <div class="dato">
+            <span class="etiqueta">Semestre:</span>
+            <span class="valor">4°</span>
+          </div>
+          <div class="dato">
+            <span class="etiqueta">Institución:</span>
+            <span class="valor">ITS</span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Fila 2: Unidades -->
+    <section class="recuadro-ancho">
+      <h2>📚 Unidades Temáticas</h2>
+      <div class="contenido-unidades">
+        <a href="unidad1.html" class="unidad">
+          <div class="numero">1</div>
+          <h3>Arquitecturas</h3>
+          <p>Modelos de cómputo</p>
+        </a>
+        
+        <a href="unidad2.html" class="unidad">
+          <div class="numero">2</div>
+          <h3>Estructura CPU</h3>
+          <p>Componentes y funcionamiento</p>
+        </a>
+        
+        <a href="unidad3.html" class="unidad">
+          <div class="numero">3</div>
+          <h3>Componentes</h3>
+          <p>Selección y ensamblado</p>
+        </a>
+        
+        <a href="unidad4.html" class="unidad">
+          <div class="numero">4</div>
+          <h3>Computación Paralela</h3>
+          <p>Multiprocesamiento</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Fila 3: Mapa -->
+    <section class="recuadro-ancho">
+      <h2>📍 Instituto Tecnológico de Saltillo</h2>
+      <div class="mapa-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3600.777437387968!2d-101.0003978252531!3d25.4382186224057!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86881c9abfbe6a91%3A0x9a14de1f5e2c2319!2sInstituto%20Tecnol%C3%B3gico%20de%20Saltillo!5e0!3m2!1ses!2smx!4v1716428123456!5m2!1ses!2smx"
+          width="100%"
+          height="400"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy">
+        </iframe>
+        <p class="direccion">Av. Tecnológico 600, Saltillo, Coahuila</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 - ITS Arquitectura de Computadoras</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Unidad 2 - Estructura y funcionamiento de la CPU</title>
+  <style>
+    :root {
+      --azul-oscuro: #0a192f;
+      --azul-medio: #172a45;
+      --azul-neon: #64ffda;
+      --azul-claro: #ccd6f6;
+      --gris-tech: #8892b0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: var(--azul-oscuro);
+      color: var(--azul-claro);
+      line-height: 1.6;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    .banner-superior {
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .banner-superior img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    header {
+      background-color: var(--azul-medio);
+      color: var(--azul-neon);
+      text-align: center;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border-bottom: 3px solid var(--azul-neon);
+    }
+
+    .tema {
+      margin-bottom: 2rem;
+      background: rgba(23, 42, 69, 0.3);
+      border-radius: 8px;
+      padding: 15px;
+    }
+
+    .tema-titulo {
+      font-size: 1.4rem;
+      color: var(--azul-neon);
+      margin-bottom: 1rem;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed var(--azul-neon);
+    }
+
+    .subtemas {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .subtema {
+      background: rgba(10, 25, 47, 0.7);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .subtema-titulo {
+      padding: 15px;
+      background: rgba(23, 42, 69, 0.8);
+      color: var(--azul-neon);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .subtema-titulo:hover {
+      background: rgba(100, 255, 218, 0.1);
+    }
+
+    .subtema-titulo::after {
+      content: "+";
+      font-size: 1.2rem;
+    }
+
+    .subtema-titulo.activo::after {
+      content: "-";
+    }
+
+    .contenido-subtema {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, padding 0.3s ease;
+    }
+
+    .contenido-subtema.abierto {
+      max-height: 1000px;
+      padding: 15px;
+      overflow-y: auto;
+    }
+
+    .contenido-subtema::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .contenido-subtema::-webkit-scrollbar-thumb {
+      background: var(--azul-neon);
+      border-radius: 3px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      border-top: 1px solid var(--azul-neon);
+    }
+  </style>
+<body class="unidad2">
+  <div class="banner-superior">
+    <img src="img/Img1Arqui.jpeg" alt="Banner Unidad 2 - Estructura de la CPU">
+  </div>
+  <header>
+    <h1>Unidad 2: Estructura y funcionamiento de la unidad central de procesamiento</h1>
+  </header>
+
+  <main>
+    <!-- Tema 2.1 -->
+    <div class="tema">
+      <div class="tema-titulo">2.1 Organización del procesador</div>
+      <div class="subtemas">
+        <div class="subtema">
+          <div class="subtema-titulo">2.1.1 Registros visibles para el usuario</div>
+          <div class="contenido-subtema">
+            <p>Registros accesibles por el programador en lenguaje ensamblador:</p>
+            <ul>
+              <li><strong>Registros de propósito general:</strong> AX, BX, CX, DX en x86</li>
+              <li><strong>Registros índice:</strong> SI, DI (Source Index, Destination Index)</li>
+              <li><strong>Registros de segmento:</strong> CS, DS, SS, ES</li>
+              <li><strong>Registro puntero de instrucción (IP):</strong> Indica la siguiente instrucción a ejecutar</li>
+              <li><strong>Registro de banderas (FLAGS):</strong> Almacena el estado del procesador</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tema 2.2 -->
+    <div class="tema">
+      <div class="tema-titulo">2.2 Registros de control y de estados</div>
+      <div class="subtemas">
+        <div class="subtema">
+          <div class="subtema-titulo">2.2.1 Ejemplos de registros de CPU reales</div>
+          <div class="contenido-subtema">
+            <p>Registros internos que controlan el funcionamiento del procesador:</p>
+            <ul>
+              <li><strong>Registro de estado (PSW):</strong> Contiene bits de condición (zero, carry, overflow)</li>
+              <li><strong>Registro de control:</strong> Habilitación de interrupciones, modo kernel/user</li>
+              <li><strong>MAR (Memory Address Register):</strong> Dirección de memoria a acceder</li>
+              <li><strong>MBR (Memory Buffer Register):</strong> Datos leídos/escribir en memoria</li>
+              <li><strong>Registro de instrucción (IR):</strong> Instrucción actual siendo ejecutada</li>
+            </ul>
+            <h4>Ejemplos en arquitecturas reales:</h4>
+            <ul>
+              <li>x86: CR0-CR4 (Control Registers)</li>
+              <li>ARM: CPSR (Current Program Status Register)</li>
+              <li>MIPS: CP0 (Coprocessor 0 registers)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tema 2.3 -->
+    <div class="tema">
+      <div class="tema-titulo">2.3 El ciclo de instrucción</div>
+      <div class="subtemas">
+        <div class="subtema">
+          <div class="subtema-titulo">2.3.1 Ciclo fetch-decode-execute</div>
+          <div class="contenido-subtema">
+            <p>Fases básicas de ejecución de una instrucción:</p>
+            <ol>
+              <li><strong>Fetch:</strong> Obtener la instrucción de memoria</li>
+              <li><strong>Decode:</strong> Decodificar la instrucción</li>
+              <li><strong>Execute:</strong> Ejecutar la operación</li>
+              <li><strong>Store:</strong> Almacenar resultados (en algunos casos)</li>
+            </ol>
+            <p>Duración típica: 1-4 ciclos de reloj por instrucción (CPI)</p>
+          </div>
+        </div>
+        <div class="subtema">
+          <div class="subtema-titulo">2.3.2 Segmentación de instrucciones</div>
+          <div class="contenido-subtema">
+            <p>Técnica para ejecutar múltiples instrucciones simultáneamente en diferentes etapas:</p>
+            <ul>
+              <li><strong>Pipeline clásico de 5 etapas:</strong> IF, ID, EX, MEM, WB</li>
+              <li><strong>Riesgos:</strong>
+                <ul>
+                  <li>Estructurales (recursos ocupados)</li>
+                  <li>De datos (dependencias entre instrucciones)</li>
+                  <li>De control (branches/jumps)</li>
+                </ul>
+              </li>
+              <li><strong>Técnicas de optimización:</strong> Forwarding, branch prediction</li>
+            </ul>
+          </div>
+        </div>
+        <div class="subtema">
+          <div class="subtema-titulo">2.3.3 Conjunto de instrucciones: Características y funciones</div>
+          <div class="contenido-subtema">
+            <p>Clasificación de instrucciones del CPU:</p>
+            <ul>
+              <li><strong>Por formato:</strong> RISC vs CISC</li>
+              <li><strong>Por función:</strong>
+                <ul>
+                  <li>Aritmético-lógicas (ADD, SUB, AND, OR)</li>
+                  <li>Transferencia de datos (MOV, LOAD, STORE)</li>
+                  <li>Control de flujo (JMP, CALL, RET)</li>
+                  <li>Entrada/salida (IN, OUT)</li>
+                </ul>
+              </li>
+              <li><strong>Modos de operación:</strong> Supervisor vs usuario</li>
+            </ul>
+          </div>
+        </div>
+        <div class="subtema">
+          <div class="subtema-titulo">2.3.4 Modos de direccionamiento</div>
+          <div class="contenido-subtema">
+            <p>Formas de especificar operandos en las instrucciones:</p>
+            <ul>
+              <li><strong>Registro:</strong> Operando en registro (ADD R1, R2)</li>
+              <li><strong>Inmediato:</strong> Valor constante (ADD R1, #5)</li>
+              <li><strong>Directo:</strong> Dirección de memoria absoluta (LOAD R1, 0x1000)</li>
+              <li><strong>Indirecto:</strong> Dirección en registro (LOAD R1, (R2))</li>
+              <li><strong>Indexado:</strong> Dirección base + desplazamiento (LOAD R1, 100(R2))</li>
+              <li><strong>Relativo al PC:</strong> Para saltos (JMP +0x50)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tema 2.4 -->
+    <div class="tema">
+      <div class="tema-titulo">2.4 Casos de estudio de CPU reales</div>
+      <div class="subtemas">
+        <div class="subtema">
+          <div class="contenido-subtema">
+            <p>Análisis comparativo de arquitecturas reales:</p>
+            <div class="caso-estudio">
+              <h4>Intel Core i9 (CISC)</h4>
+              <ul>
+                <li>Arquitectura x86-64</li>
+                <li>Pipeline de 14-19 etapas</li>
+                <li>Ejecución fuera de orden</li>
+                <li>HyperThreading</li>
+              </ul>
+            </div>
+            <div class="caso-estudio">
+              <h4>ARM Cortex-A78 (RISC)</h4>
+              <ul>
+                <li>Conjunto reducido de instrucciones</li>
+                <li>Pipeline de 11 etapas</li>
+                <li>Diseño power-efficient</li>
+                <li>Big.LITTLE architecture</li>
+              </ul>
+            </div>
+            <div class="caso-estudio">
+              <h4>AMD Ryzen 9</h4>
+              <ul>
+                <li>Arquitectura Zen 3</li>
+                <li>Chiplet design</li>
+                <li>Unified L3 cache</li>
+                <li>Precision Boost 2</li>
+              </ul>
+            </div>
+            <div class="caso-estudio">
+              <h4>Apple M1</h4>
+              <ul>
+                <li>ARM-based SoC</li>
+                <li>Unified memory architecture</li>
+                <li>8-core CPU (4 performance + 4 efficiency)</li>
+                <li>Neural Engine</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 ITS - Arquitectura de Computadoras</p>
+  </footer>
+ <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const subtemaTitulos = document.querySelectorAll('.subtema-titulo');
+      
+      subtemaTitulos.forEach(titulo => {
+        titulo.addEventListener('click', function() {
+          // Cerrar otros subtemas
+          document.querySelectorAll('.subtema-titulo').forEach(t => {
+            if (t !== this) {
+              t.classList.remove('activo');
+              t.nextElementSibling.classList.remove('abierto');
+            }
+          });
+          
+          // Alternar estado del subtema clickeado
+          this.classList.toggle('activo');
+          const contenido = this.nextElementSibling;
+          contenido.classList.toggle('abierto');
+          
+          // Desplazamiento suave
+          if (contenido.classList.contains('abierto')) {
+            setTimeout(() => {
+              contenido.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }, 100);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
